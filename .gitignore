@@ -1,0 +1,5 @@
+*venv*
+*xlsx
+*ipynb
+*__pycache__
+*.env*

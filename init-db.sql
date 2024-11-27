@@ -1,0 +1,4 @@
+CREATE USER 'user_local'@'%' IDENTIFIED BY 'password';
+CREATE DATABASE IF NOT EXISTS customDB;
+GRANT ALL PRIVILEGES ON customDB.* TO 'user_local'@'%';
+FLUSH PRIVILEGES;

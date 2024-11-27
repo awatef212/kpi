@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env.docker
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:8080"
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ENV_MYSQL_DB_PASSWORD}
+      MYSQL_USER: ${ENV_MYSQL_DB_USER}
+      MYSQL_PASSWORD: ${ENV_MYSQL_DB_PASSWORD}
+      MYSQL_DATABASE: ${ENV_MYSQL_DB_NAME}
+    env_file:
+      - ./backend/.env.docker
+    ports:
+      - "3307:3306"
+#Todo script SQL create a user with usename and password of .env file
